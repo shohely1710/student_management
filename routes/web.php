@@ -20,3 +20,4 @@ Route::get('loginpage', [Admincontrol::class, 'adminlogin']);//1st parameter is 
 Route::post('islogin', [Admincontrol::class, 'adminloged']);
 
 Route::get('studentregisterform', [Studentcontrol::class, 'create']);
+Route::post('studentstore', [Studentcontrol::class, 'store']);

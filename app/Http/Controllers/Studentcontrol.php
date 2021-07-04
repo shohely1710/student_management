@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\student;
 
 class Studentcontrol extends Controller
 {
@@ -34,7 +35,15 @@ class Studentcontrol extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //create a new object for student model and save the field after submitting the form
+        $student = new student;
+        $student->sname = $request->sname;
+        $student->fname = $request->fname;
+        $student->class = $request->class;
+        $student->phnum = $request->phnum;
+        $student->email = $request->email;
+        $student->save();
+        return redirect('studentregisterform');
     }
 
     /**

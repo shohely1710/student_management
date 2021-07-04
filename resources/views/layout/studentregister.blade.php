@@ -8,8 +8,8 @@
     <div class="x_panel">
         <div class="x_content">
         <br />
-        <form action="" method="post"  id="demo-form2"  class="form-horizontal form-label-left">
-
+        <form action="{{url('studentstore')}}" method="post"  id="demo-form2"  class="form-horizontal form-label-left">
+            @csrf
             <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Student Name <span class="required">*</span>
             </label>
@@ -49,7 +49,7 @@
             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                 <button class="btn btn-primary" type="button">Cancel</button>
                 <button class="btn btn-primary" type="reset">Reset</button>
-                <button type="submit" class="btn btn-success">Submit</button>
+                <button type="submit" name="submit" class="btn btn-success">Submit</button>
             </div>
             </div>
 
