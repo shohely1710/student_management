@@ -24,7 +24,7 @@ class Studentcontrol extends Controller
      */
     public function create()
     {
-        return view('layout.studentregister');
+        return view('studentregister');
     }
 
     /**
@@ -52,9 +52,10 @@ class Studentcontrol extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $students = student::all();
+        return view('studentdetails', compact('students'));
     }
 
     /**

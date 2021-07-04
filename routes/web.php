@@ -21,3 +21,4 @@ Route::post('islogin', [Admincontrol::class, 'adminloged']);
 
 Route::get('studentregisterform', [Studentcontrol::class, 'create']);
 Route::post('studentstore', [Studentcontrol::class, 'store']);
+Route::get('studentdetails', [Studentcontrol::class, 'show']);
