@@ -19,11 +19,10 @@
         <td>{{$student->phnum}}</td>
         <td>{{$student->email}}</td>
         </tr>
-
         @endforeach
 
 </tbody>
-
 </table>
+{{$students->links()}}
 
 @endsection

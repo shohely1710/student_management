@@ -54,7 +54,7 @@ class Studentcontrol extends Controller
      */
     public function show()
     {
-        $students = student::all();
+        $students = student::paginate(4);
         return view('studentdetails', compact('students'));
     }
 
