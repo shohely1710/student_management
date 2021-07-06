@@ -9,6 +9,8 @@
     <th>Class</th>
     <th>Phone num</th>
     <th>Email</th>
+    <th>Edit</th>
+    <th>Delete</th>
 </thead>
 <tbody>
         @foreach($students as $student)
@@ -18,6 +20,8 @@
         <td>{{$student->class}}</td>
         <td>{{$student->phnum}}</td>
         <td>{{$student->email}}</td>
+        <td><a href="{{route('student.edit', ['id'=>$student->id])}}">Edit</a></td>
+        <td><a href="{{route('student.delete', ['id'=>$student->id])}}">Delete</a></td>
         </tr>
         @endforeach
 

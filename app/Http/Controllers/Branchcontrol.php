@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\student;
+use App\Models\branch;
 
-class Studentcontrol extends Controller
+class Branchcontrol extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +24,7 @@ class Studentcontrol extends Controller
      */
     public function create()
     {
-        return view('studentregister');
+        return view('addbranch');
     }
 
     /**
@@ -35,15 +35,12 @@ class Studentcontrol extends Controller
      */
     public function store(Request $request)
     {
-        //create a new object for student model and save the field after submitting the form
-        $student = new student;
-        $student->sname = $request->sname;
-        $student->fname = $request->fname;
-        $student->class = $request->class;
-        $student->phnum = $request->phnum;
-        $student->email = $request->email;
-        $student->save();
-        return redirect('studentregisterform');
+        //store data after submitting the form
+        $branch = new branch;
+        $branch->bsort = $request->bsort;
+        $branch->bfull = $request->bfull;
+        $branch->save();
+        return redirect('addbranch');
     }
 
     /**
@@ -52,10 +49,9 @@ class Studentcontrol extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        $students = student::paginate(4);
-        return view('studentdetails', compact('students'));
+        //
     }
 
     /**
@@ -66,8 +62,7 @@ class Studentcontrol extends Controller
      */
     public function edit($id)
     {
-        $students = student::find($id);
-        return view('studentedit', compact('students'));
+        //
     }
 
     /**
@@ -79,14 +74,7 @@ class Studentcontrol extends Controller
      */
     public function update(Request $request, $id)
     {
-        $student = student::find($id);
-        $student->sname = $request->sname;
-        $student->fname = $request->fname;
-        $student->class = $request->class;
-        $student->phnum = $request->phnum;
-        $student->email =$request->email;
-        $student->save();
-        return redirect('studentdetails');
+        //
     }
 
     /**
@@ -98,8 +86,5 @@ class Studentcontrol extends Controller
     public function destroy($id)
     {
         //
-        $student = student::find($id);
-        $student->delete();
-        return redirect('studentdetails');
     }
 }
