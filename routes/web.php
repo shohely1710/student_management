@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admincontrol;
 use App\Http\Controllers\Studentcontrol;
 use App\Http\Controllers\Branchcontrol;
+use App\Http\Controllers\Coursecontrol;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +34,6 @@ Route::get('/branchshow', [Branchcontrol::class, 'show']);
 Route::get('/branch_edit/{id}', [Branchcontrol::class, 'edit'])->name('branch.edit');
 Route::post('/branch_update/{id}', [Branchcontrol::class, 'update'])->name('branch.update');
 Route::get('/branch_delete/{id}',[Branchcontrol::class, 'destroy'])->name('branch.delete');
+
+Route::get('/addcourse', [Coursecontrol::class, 'create']);
+Route::post('/coursestore', [Coursecontrol::class, 'store']);
