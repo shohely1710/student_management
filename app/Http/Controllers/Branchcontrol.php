@@ -49,9 +49,10 @@ class Branchcontrol extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $branches = branch::paginate(2);
+        return view('branchdetails', compact('branches'));
     }
 
     /**
