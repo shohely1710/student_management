@@ -14,8 +14,8 @@
         <tr>
         <td>{{$branche->bfull}}</td>
         <td>{{$branche->bsort}}</td>
-        <td><a href="{{route('student.edit', ['id'=>$branche->id])}}">Edit</a></td>
-        <td><a href="{{route('student.delete', ['id'=>$branche->id])}}">Delete</a></td>
+        <td><a href="{{route('branch.edit', ['id'=>$branche->id])}}">Edit</a></td>
+        <td><a href="{{route('branch.delete', ['id'=>$branche->id])}}">Delete</a></td>
         </tr>
         @endforeach
 

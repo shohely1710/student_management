@@ -27,6 +27,9 @@ Route::get('/student_edit/{id}', [Studentcontrol::class, 'edit'])->name('student
 Route::post('/student_update/{id}', [Studentcontrol::class, 'update'])->name('student.update');
 Route::get('/student_delete/{id}',[Studentcontrol::class, 'destroy'])->name('student.delete');
 
-Route::get('addbranch', [Branchcontrol::class, 'create']);
-Route::post('branchstore', [Branchcontrol::class, 'store']);
-Route::get('branchshow', [Branchcontrol::class, 'show']);
+Route::get('/addbranch', [Branchcontrol::class, 'create']);
+Route::post('/branchstore', [Branchcontrol::class, 'store']);
+Route::get('/branchshow', [Branchcontrol::class, 'show']);
+Route::get('/branch_edit/{id}', [Branchcontrol::class, 'edit'])->name('branch.edit');
+Route::post('/branch_update/{id}', [Branchcontrol::class, 'update'])->name('branch.update');
+Route::get('/branch_delete/{id}',[Branchcontrol::class, 'destroy'])->name('branch.delete');
