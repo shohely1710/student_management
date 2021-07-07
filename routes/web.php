@@ -37,3 +37,4 @@ Route::get('/branch_delete/{id}',[Branchcontrol::class, 'destroy'])->name('branc
 
 Route::get('/addcourse', [Coursecontrol::class, 'create']);
 Route::post('/coursestore', [Coursecontrol::class, 'store']);
+Route::get('/courseshow', [Coursecontrol::class, 'show']);

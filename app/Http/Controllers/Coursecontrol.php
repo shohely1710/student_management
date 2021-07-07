@@ -50,9 +50,12 @@ class Coursecontrol extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $courses = course::select('branches.bfull', 'courses.cname')
+                ->join('branches', 'courses.branchid', 'branches.id')
+                ->get();
+        return view('courseshow', compact('courses'));
     }
 
     /**
