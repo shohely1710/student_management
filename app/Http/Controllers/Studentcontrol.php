@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\student;
+use App\Models\branch;
+use App\Models\course;
+
 
 class Studentcontrol extends Controller
 {
@@ -24,7 +27,9 @@ class Studentcontrol extends Controller
      */
     public function create()
     {
-        return view('studentregister');
+        $courses = course::all();
+        $branches = branch::all();
+        return view('studentregister', compact(['courses', 'branches']));
     }
 
     /**
@@ -42,7 +47,12 @@ class Studentcontrol extends Controller
         $student->class = $request->class;
         $student->phnum = $request->phnum;
         $student->email = $request->email;
+        $student->course_id = $request->course_id;
+        $student->branch_id = $request->branch_id;
+        $student->image = $request->file('image')->getClientOriginalName();
         $student->save();
+
+        $request->image->move(public_path('postimg'), $student->image);
         return redirect('studentregisterform');
     }
 
@@ -101,5 +111,11 @@ class Studentcontrol extends Controller
         $student = student::find($id);
         $student->delete();
         return redirect('studentdetails');
+    }
+    public function courses(Request $request)
+    {
+        $id = $request->id;
+        $data['courses'] = Course::where('branch_id', $id)->get();
+        echo json_encode($data);
     }
 }

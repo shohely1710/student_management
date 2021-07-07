@@ -21,6 +21,7 @@ Route::get('/dashbord', [Admincontrol::class, 'index']);
 Route::get('loginpage', [Admincontrol::class, 'adminlogin']);//1st parameter is url, 2nd is file name in views folder
 Route::post('islogin', [Admincontrol::class, 'adminloged']);
 
+Route::post('/student/courses', [Studentcontrol::class, 'courses']);
 Route::get('studentregisterform', [Studentcontrol::class, 'create']);
 Route::post('studentstore', [Studentcontrol::class, 'store']);
 Route::get('studentdetails', [Studentcontrol::class, 'show']);
@@ -37,4 +38,5 @@ Route::get('/branch_delete/{id}',[Branchcontrol::class, 'destroy'])->name('branc
 
 Route::get('/addcourse', [Coursecontrol::class, 'create']);
 Route::post('/coursestore', [Coursecontrol::class, 'store']);
-Route::get('/courseshow', [Coursecontrol::class, 'show']);
+Route::get('/courseshow', [Coursecontrol
+::class, 'show']);
