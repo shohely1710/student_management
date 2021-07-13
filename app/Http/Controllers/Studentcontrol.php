@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\student;
 use App\Models\branch;
 use App\Models\course;
+use App\Models\Fee;
 
 
 class Studentcontrol extends Controller
@@ -62,10 +63,47 @@ class Studentcontrol extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(Request $request)
     {
-        $students = student::paginate(4);
+        if($request->ajax()){
+            $student_cols = $request->get('filter');
+        if($student_cols){
+            $columns = explode(',', $student_cols);
+            $student = student::select('id', 'sname');
+            foreach($columns as $key => $value){
+                $student->addselect($value);
+            }
+            $students = $student->paginate(4);
+            return view('studentdetails_ajax', compact('students'));
+        }
+        else{
+            $students = student::select('id', 'sname')->paginate(4);
+            return view('studentdetails_ajax', compact('students'));
+        }       
+    }
+    else{
+        $students = student::select('id', 'sname')->paginate(4);
         return view('studentdetails', compact('students'));
+    }
+}
+
+
+        
+
+    public function ajax_show(Request $request)
+    {
+        if($request->ajax()){
+            $sort_by = $request->get('sortby');
+            $sort_type = $request->get('sorttype');
+            $search = $request->get('search');
+            $search = str_replace(" ", "%", $search);
+
+            $students = student::where('sname', 'like', '%' .$search. '%')
+                                ->orWhere('fname', 'like', '%'.$search.'%')
+                                ->orderBy($sort_by, $sort_type)
+                                ->paginate(3);
+            return view('studentdetails_ajax', compact('students'));
+        }
     }
 
     /**
@@ -117,5 +155,27 @@ class Studentcontrol extends Controller
         $id = $request->id;
         $data['courses'] = Course::where('branch_id', $id)->get();
         echo json_encode($data);
+    }
+
+    public function single_student(Request $request){
+        $id = $request->id;
+        $student = student::where(['id'=>$id])->get();
+        // print_r($student[0]['id']);exit();
+        return view('student_show', compact('student'));
+    }
+    public function fee_form(Request $request)
+    {
+        $id = $request->id;
+        $fee = Fee::where(['student_id'=>$id])->get();
+        return view('feeform', compact(['fee', 'id']));
+    }
+    public function feeadd(Request $request){
+        $fee = new Fee;
+        $id = $request->id;
+        $fee->student_id = $request->id;
+        $fee->amount = $request->amount;
+        $fee->save();
+
+        return redirect(route('student.fee', ['id' => $id]));
     }
 }
